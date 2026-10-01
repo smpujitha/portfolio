@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Indira Devi S | Data Science Portfolio</title>
+<meta name="description" content="Data science student at SRM Institute of Science and Technology. Case studies in customer segmentation, fraud detection, prediction and exploratory analysis.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Source+Serif+4:opsz,wght@8..60,400;8..60,600;8..60,700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0E1320;
+    --panel: #151C2C;
+    --line: #26304A;
+    --text: #E8ECF4;
+    --muted: #9AA5B8;
+    --accent: #F2B705;
+    --teal: #2DD4BF;
+    --serif: 'Source Serif 4', Georgia, serif;
+    --sans: 'Inter', -apple-system, 'Segoe UI', sans-serif;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); line-height: 1.65; font-size: 16px; }
+  a { color: inherit; }
+  a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
+
+  /* NAV */
+  nav.topnav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 clamp(20px, 5vw, 80px);
+    height: 60px;
+    background: rgba(14,19,32,0.88);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--line);
+  }
+  nav.topnav .brand { font-family: var(--serif); font-size: 17px; font-weight: 600; text-decoration: none; }
+  nav.topnav ul { list-style: none; display: flex; gap: 28px; }
+  nav.topnav ul a { color: var(--muted); text-decoration: none; font-size: 14px; transition: color .2s; }
+  nav.topnav ul a:hover { color: var(--accent); }
+
+  /* WRAPPER */
+  .wrap { max-width: 1100px; margin: 0 auto; padding: 0 clamp(20px, 5vw, 64px); }
+
+  /* SECTIONS */
+  section { padding: 80px 0; }
+  section:first-of-type { padding-top: 120px; }
+
+  h2.section-title {
+    font-family: var(--serif); font-size: 26px; font-weight: 600;
+    margin-bottom: 6px;
+  }
+  .section-lead { color: var(--muted); font-size: 15px; margin-bottom: 36px; max-width: 65ch; }
+
+  /* HERO */
+  .hero-grid {
+    display: grid; grid-template-columns: 1.5fr 1fr; gap: 56px; align-items: start;
+  }
+  .hero-left h1 {
+    font-family: var(--serif);
+    font-size: clamp(28px, 3.5vw, 44px);
+    line-height: 1.18;
+    font-weight: 600;
+    margin-bottom: 20px;
+  }
+  .hero-left p { color: var(--muted); max-width: 60ch; margin-bottom: 14px; font-size: 15.5px; }
+  .open-badge {
+    display: inline-block;
+    background: rgba(242,183,5,0.12);
+    border: 1px solid rgba(242,183,5,0.35);
+    color: var(--accent);
+    font-size: 13px; font-weight: 500;
+    border-radius: 20px; padding: 5px 14px;
+    margin-bottom: 28px;
+  }
+  .hero-links { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 8px; }
+  .hero-links a {
+    display: inline-flex; align-items: center; gap: 6px;
+    background: var(--panel); border: 1px solid var(--line);
+    color: var(--text); font-size: 13.5px; font-weight: 500;
+    text-decoration: none; border-radius: 6px; padding: 8px 16px;
+    transition: border-color .2s, color .2s;
+  }
+  .hero-links a:hover { border-color: var(--accent); color: var(--accent); }
+
+  .glance-card {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; overflow: hidden;
+  }
+  .glance-card .card-head {
+    padding: 14px 22px;
+    border-bottom: 1px solid var(--line);
+    font-size: 12px; font-weight: 600;
+    letter-spacing: .07em; text-transform: uppercase;
+    color: var(--muted);
+  }
+  .glance-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 13px 22px; border-bottom: 1px solid var(--line);
+    font-size: 14px;
+  }
+  .glance-row:last-child { border-bottom: none; }
+  .glance-row .label { color: var(--muted); }
+  .glance-row .value { font-weight: 600; text-align: right; }
+
+  /* CASE STUDIES */
+  .case {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 32px;
+    margin-bottom: 20px;
+  }
+  .case-head {
+    display: flex; justify-content: space-between; align-items: flex-start;
+    gap: 16px; flex-wrap: wrap; margin-bottom: 10px;
+  }
+  .case h3 { font-family: var(--serif); font-size: 21px; font-weight: 600; }
+  .type-badge {
+    color: var(--accent); font-size: 12.5px; font-weight: 500;
+    border: 1px solid var(--accent); border-radius: 14px; padding: 3px 12px;
+    white-space: nowrap;
+  }
+  .tool-tags { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 24px; }
+  .tool-tag {
+    background: rgba(45,212,191,0.08); border: 1px solid rgba(45,212,191,0.25);
+    color: var(--teal); font-size: 12px; border-radius: 5px; padding: 3px 10px;
+  }
+  .case-steps {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+    border: 1px solid var(--line); border-radius: 8px; overflow: hidden;
+  }
+  .case-step { padding: 20px 22px; }
+  .case-step:not(:last-child) { border-right: 1px solid var(--line); }
+  .case-step h4 { font-size: 11.5px; font-weight: 600; color: var(--accent); letter-spacing: .08em; text-transform: uppercase; margin-bottom: 8px; }
+  .case-step p { color: var(--muted); font-size: 14px; line-height: 1.6; }
+  .case-foot { margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13.5px; }
+  .case-foot a { color: var(--teal); text-decoration: none; border-bottom: 1px solid transparent; transition: border-color .2s; }
+  .case-foot a:hover { border-color: var(--teal); }
+  .also { color: var(--muted); font-size: 14px; margin-top: 6px; }
+  .also a { color: var(--text); text-decoration: underline; text-underline-offset: 3px; }
+
+  /* SKILLS */
+  .skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+  .skill-group {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 24px;
+  }
+  .skill-group.learning { border-style: dashed; }
+  .skill-group h3 { font-family: var(--serif); font-size: 16px; font-weight: 600; margin-bottom: 3px; }
+  .skill-group .what { color: var(--muted); font-size: 13px; margin-bottom: 16px; }
+  .chip-list { display: flex; flex-wrap: wrap; gap: 8px; }
+  .chip {
+    display: flex; flex-direction: column;
+    background: rgba(45,212,191,0.07); border: 1px solid rgba(45,212,191,0.2);
+    border-radius: 6px; padding: 6px 10px;
+  }
+  .chip .chip-name { color: var(--teal); font-size: 13px; font-weight: 500; }
+  .chip .chip-used { color: var(--muted); font-size: 11px; margin-top: 1px; }
+  .chip.learning-chip {
+    background: rgba(242,183,5,0.07); border-color: rgba(242,183,5,0.2);
+  }
+  .chip.learning-chip .chip-name { color: var(--accent); }
+
+  /* EDUCATION */
+  .edu-grid { display: grid; grid-template-columns: 1.4fr 1fr; gap: 20px; }
+  .edu-box {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 26px 28px;
+  }
+  .edu-box h3 { font-family: var(--serif); font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+  .edu-box .degree { color: var(--muted); font-size: 14.5px; margin-bottom: 4px; }
+  .edu-box .cgpa { font-size: 14px; }
+  .edu-box .cgpa strong { color: var(--accent); }
+  .cert-list { margin-top: 14px; }
+  .cert-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 11px 0; border-bottom: 1px solid var(--line);
+    font-size: 14.5px;
+  }
+  .cert-row:first-child { border-top: 1px solid var(--line); }
+  .cert-issuer { color: var(--teal); font-size: 13px; }
+
+  /* CONTACT */
+  .contact-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px;
+  }
+  .contact-card {
+    background: var(--panel); border: 1px solid var(--line);
+    border-radius: 10px; padding: 20px 22px;
+    text-decoration: none; display: block;
+    transition: border-color .2s;
+  }
+  .contact-card:hover { border-color: var(--accent); }
+  .contact-card small { display: block; color: var(--muted); font-size: 12px; margin-bottom: 4px; text-transform: uppercase; letter-spacing: .06em; }
+  .contact-card span { font-size: 14.5px; font-weight: 500; word-break: break-all; }
+
+  /* FOOTER */
+  footer { padding: 32px 0 40px; border-top: 1px solid var(--line); }
+  footer p { color: var(--muted); font-size: 13px; text-align: center; }
+
+  /* DIVIDER */
+  .section-divider { border: none; border-top: 1px solid var(--line); margin: 0; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-grid { grid-template-columns: 1fr; gap: 36px; }
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+    .edu-grid { grid-template-columns: 1fr; }
+    .case-steps { grid-template-columns: 1fr; }
+    .case-step:not(:last-child) { border-right: none; border-bottom: 1px solid var(--line); }
+  }
+  @media (max-width: 600px) {
+    nav.topnav ul { gap: 16px; }
+    .skills-grid { grid-template-columns: 1fr; }
+    .case { padding: 22px 18px; }
+  }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+
+<!-- TOP NAV -->
+<nav class="topnav" aria-label="Main navigation">
+  <a href="#home" class="brand">Indira Devi S</a>
+  <ul>
+    <li><a href="#home">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#education">Education</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <h1>I turn raw data into clear answers: who to retain, what to flag, and when demand peaks.</h1>
+        <p>Third-year Computer Science Engineering student at SRM Institute of Science and Technology. I build end-to-end data projects in Python, from cleaning and exploration to modelling and visualisation, using pandas, scikit-learn and Plotly.</p>
+        <div class="open-badge">Open to internships &middot; Entry-level roles &middot; Freelance projects</div>
+        <div class="hero-links">
+          <a href="https://github.com/smpujitha" target="_blank" rel="noopener">GitHub</a>
+          <a href="mailto:s.m.pujitha2007@gmail.com">Email</a>
+          <a href="https://www.linkedin.com/in/indira-devi-ba9a64337" target="_blank" rel="noopener">LinkedIn</a>
+          <a href="resume.pdf" target="_blank" rel="noopener">Resume</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="glance-card" aria-label="At a glance">
+          <div class="card-head">At a glance</div>
+          <div class="glance-row"><span class="label">Focus</span><span class="value">Data Analysis, Machine Learning</span></div>
+          <div class="glance-row"><span class="label">Main tools</span><span class="value">Python &middot; SQL &middot; scikit-learn</span></div>
+          <div class="glance-row"><span class="label">Projects</span><span class="value">5 featured, 6 total</span></div>
+          <div class="glance-row"><span class="label">CGPA</span><span class="value">9.05 / 10</span></div>
+          <div class="glance-row"><span class="label">Graduating</span><span class="value">2028</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- CASE STUDIES -->
+<section id="projects">
+  <div class="wrap">
+    <h2 class="section-title">Case studies</h2>
+    <p class="section-lead">Five projects, each shown as the problem, the process and the result.</p>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>RFM customer segmentation</h3>
+        <span class="type-badge">Segmentation</span>
+      </div>
+      <div class="tool-tags">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">pandas</span>
+        <span class="tool-tag">NumPy</span>
+        <span class="tool-tag">scikit-learn</span>
+      </div>
+      <div class="case-steps">
+        <div class="case-step"><h4>Problem</h4><p>Treating every customer the same wastes retention effort. The business needed to know who its best customers are and who is about to leave.</p></div>
+        <div class="case-step"><h4>Process</h4><p>Cleaned transaction data, calculated Recency, Frequency and Monetary value for each customer, and grouped customers into segments by buying behaviour.</p></div>
+        <div class="case-step"><h4>Result</h4><p>Separate high-value and at-risk customer groups, so retention offers can be targeted at the right people.</p></div>
+      </div>
+      <div class="case-foot"><a href="https://github.com/smpujitha/RFM_analysis" target="_blank" rel="noopener">View repository &rarr;</a></div>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>Credit card fraud detection</h3>
+        <span class="type-badge">Classification</span>
+      </div>
+      <div class="tool-tags">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">pandas</span>
+        <span class="tool-tag">scikit-learn</span>
+        <span class="tool-tag">Matplotlib</span>
+      </div>
+      <div class="case-steps">
+        <div class="case-step"><h4>Problem</h4><p>Fraudulent transactions are very rare, so a model can look accurate while missing nearly all of them.</p></div>
+        <div class="case-step"><h4>Process</h4><p>Explored transaction data, addressed heavy class imbalance, trained a classification model and evaluated it with imbalance-appropriate metrics.</p></div>
+        <div class="case-step"><h4>Result</h4><p>A classifier that flags potentially fraudulent transactions for review instead of relying on overall accuracy.</p></div>
+      </div>
+      <div class="case-foot"><a href="https://github.com/smpujitha/ccf_analysis" target="_blank" rel="noopener">View repository &rarr;</a></div>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>Travel insurance prediction</h3>
+        <span class="type-badge">Classification</span>
+      </div>
+      <div class="tool-tags">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">pandas</span>
+        <span class="tool-tag">scikit-learn</span>
+      </div>
+      <div class="case-steps">
+        <div class="case-step"><h4>Problem</h4><p>A travel company wants to know which customers are likely to buy insurance, so it can focus its offers.</p></div>
+        <div class="case-step"><h4>Process</h4><p>Prepared demographic and travel-history features, then trained and compared models to predict purchase decisions.</p></div>
+        <div class="case-step"><h4>Result</h4><p>A predictive model that estimates purchase likelihood from customer profile and travel history.</p></div>
+      </div>
+      <div class="case-foot"><a href="https://github.com/smpujitha/TravelInsurancePrediction" target="_blank" rel="noopener">View repository &rarr;</a></div>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>Uber ride data analysis</h3>
+        <span class="type-badge">Exploratory analysis</span>
+      </div>
+      <div class="tool-tags">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">pandas</span>
+        <span class="tool-tag">NumPy</span>
+        <span class="tool-tag">Matplotlib</span>
+        <span class="tool-tag">Plotly</span>
+      </div>
+      <div class="case-steps">
+        <div class="case-step"><h4>Problem</h4><p>Ride demand changes by hour and place, making supply planning hard without clear patterns.</p></div>
+        <div class="case-step"><h4>Process</h4><p>Cleaned trip data and analysed demand by time of day and location, presenting each pattern as a chart.</p></div>
+        <div class="case-step"><h4>Result</h4><p>Visual evidence of when and where demand is highest, ready to support demand-planning decisions.</p></div>
+      </div>
+      <div class="case-foot"><a href="https://github.com/smpujitha/uber_ride_project" target="_blank" rel="noopener">View repository &rarr;</a></div>
+    </article>
+
+    <article class="case">
+      <div class="case-head">
+        <h3>IPL data analysis</h3>
+        <span class="type-badge">Exploratory analysis</span>
+      </div>
+      <div class="tool-tags">
+        <span class="tool-tag">Python</span>
+        <span class="tool-tag">pandas</span>
+        <span class="tool-tag">Plotly</span>
+        <span class="tool-tag">Matplotlib</span>
+      </div>
+      <div class="case-steps">
+        <div class="case-step"><h4>Problem</h4><p>Match and player records are large, and performance trends are hard to see in raw tables.</p></div>
+        <div class="case-step"><h4>Process</h4><p>Explored match and player data, calculated statistics, and built interactive visualisations.</p></div>
+        <div class="case-step"><h4>Result</h4><p>Interactive views of team and player performance trends that can be explored without reading the raw data.</p></div>
+      </div>
+      <div class="case-foot"><a href="https://github.com/smpujitha/ipl_analysis" target="_blank" rel="noopener">View repository &rarr;</a></div>
+    </article>
+
+    <p class="also">Also built: <a href="https://github.com/smpujitha/expense-sharing" target="_blank" rel="noopener">Expense sharing application</a>, a Python tool that calculates who owes whom in a group.</p>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="wrap">
+    <h2 class="section-title">Skills</h2>
+    <p class="section-lead">Grouped by what I use them for, with the projects where I applied each one.</p>
+    <div class="skills-grid">
+
+      <div class="skill-group">
+        <h3>Programming and databases</h3>
+        <p class="what">Writing code and querying data</p>
+        <div class="chip-list">
+          <div class="chip"><span class="chip-name">Python</span><span class="chip-used">All projects</span></div>
+          <div class="chip"><span class="chip-name">SQL (MySQL)</span><span class="chip-used">Certified, HCL GUVI</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Data preparation</h3>
+        <p class="what">Getting data ready for analysis</p>
+        <div class="chip-list">
+          <div class="chip"><span class="chip-name">pandas</span><span class="chip-used">All projects</span></div>
+          <div class="chip"><span class="chip-name">NumPy</span><span class="chip-used">Uber, RFM</span></div>
+          <div class="chip"><span class="chip-name">Data cleaning</span><span class="chip-used">All projects</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Machine learning</h3>
+        <p class="what">Predicting and grouping</p>
+        <div class="chip-list">
+          <div class="chip"><span class="chip-name">scikit-learn</span><span class="chip-used">RFM, Fraud, Insurance</span></div>
+          <div class="chip"><span class="chip-name">Classification</span><span class="chip-used">Fraud, Insurance</span></div>
+          <div class="chip"><span class="chip-name">Customer segmentation</span><span class="chip-used">RFM</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group">
+        <h3>Visualisation and analysis</h3>
+        <p class="what">Finding and showing patterns</p>
+        <div class="chip-list">
+          <div class="chip"><span class="chip-name">Exploratory data analysis</span><span class="chip-used">Uber, IPL</span></div>
+          <div class="chip"><span class="chip-name">Matplotlib</span><span class="chip-used">Uber, Fraud, IPL</span></div>
+          <div class="chip"><span class="chip-name">Plotly</span><span class="chip-used">Uber, IPL</span></div>
+        </div>
+      </div>
+
+      <div class="skill-group learning">
+        <h3>Currently learning</h3>
+        <p class="what">Next on my list</p>
+        <div class="chip-list">
+          <div class="chip learning-chip"><span class="chip-name">Advanced model evaluation</span></div>
+          <div class="chip learning-chip"><span class="chip-name">Feature engineering at scale</span></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <h2 class="section-title">Education and certifications</h2>
+    <div class="edu-grid">
+      <div class="edu-box">
+        <h3>SRM Institute of Science and Technology</h3>
+        <p class="degree">B.Tech, Computer Science and Engineering (Core) &middot; Third year</p>
+        <p class="cgpa">CGPA <strong>9.05 / 10</strong> &middot; Expected graduation 2028</p>
+      </div>
+      <div class="edu-box">
+        <h3>Certifications</h3>
+        <div class="cert-list">
+          <div class="cert-row"><span>Data Science</span><span class="cert-issuer">HCL GUVI</span></div>
+          <div class="cert-row"><span>MySQL</span><span class="cert-issuer">HCL GUVI</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="section-divider">
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <h2 class="section-title">Contact</h2>
+    <p class="section-lead">For internships, jobs or freelance work, email is the fastest way to reach me.</p>
+    <div class="contact-grid">
+      <a class="contact-card" href="mailto:s.m.pujitha2007@gmail.com"><small>Email</small><span>s.m.pujitha2007@gmail.com</span></a>
+      <a class="contact-card" href="https://www.linkedin.com/in/indira-devi-ba9a64337" target="_blank" rel="noopener"><small>LinkedIn</small><span>indira-devi-ba9a64337</span></a>
+      <a class="contact-card" href="https://github.com/smpujitha" target="_blank" rel="noopener"><small>GitHub</small><span>smpujitha</span></a>
+      <a class="contact-card" href="resume.pdf" target="_blank" rel="noopener"><small>Resume</small><span>Download PDF</span></a>
+      <a class="contact-card" href="tel:+918122814501"><small>Phone</small><span>+91 81228 14501</span></a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>&copy; 2026 Indira Devi S</p>
+  </div>
+</footer>
+
+</body>
+</html>
